@@ -4,3 +4,9 @@ D:\max19736\homework\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleAp
 D:\max19736\homework\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
 D:\max19736\homework\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
 D:\max19736\homework\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+C:\Users\User\Documents\Visual Studio 2015\Projects\homework1\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\User\Documents\Visual Studio 2015\Projects\homework1\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+C:\Users\User\Documents\Visual Studio 2015\Projects\homework1\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+C:\Users\User\Documents\Visual Studio 2015\Projects\homework1\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\User\Documents\Visual Studio 2015\Projects\homework1\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\User\Documents\Visual Studio 2015\Projects\homework1\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
