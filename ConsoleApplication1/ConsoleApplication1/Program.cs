@@ -11,34 +11,38 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            var classes = FindClass1 ();
+            var classes = Findhouse ();
         }
 
-        public static List<Class1> FindClass1()
+        public static List<house> Findhouse()
         {
-            List<Class1> classes = new List<Class1>();
-            var xml =XElement.Load(@"C:\Users\User\Documents\Visual Studio 2015\Projects\homework1\max19736.xml");
+            List<house> house = new List<house>();
+            XNamespace gml = @"http://data.gov.tw/node/42171";
 
-            var classesNode = xml.Descendants("row_item").ToList();
+            var xml = XElement.Load(@"http://opendataap2.e-land.gov.tw/resource/files/2016-12-21/b7e51d49764d324866a9941023648336.xml");
 
-            for(var i=0;i< classesNode.Count(); i++)
+            var housesNode = xml.Descendants("row_item").ToList();
+
+            for(var i=0;i< housesNode.Count(); i++)
             {
-                var classNode = classesNode[i];
+                var houseNode = housesNode[i];
             }
-            classesNode
+            housesNode
                 .Where(x => !x.IsEmpty).ToList()
-                .ForEach(classNode =>
+                .ForEach(houseNode =>
                 {
-                    var date = classNode.Element("登記證核准日期").Value.Trim();
-                    var number = classNode.Element("編號").Value.Trim();
-                    var chinesename = classNode.Element("中文名稱").Value.Trim();
-                    var englishename = classNode.Element("英文名稱").Value.Trim();
-                    var phonenumber = classNode.Element("電話").Value.Trim();
-                    var fax = classNode.Element("傳真").Value.Trim();
-                    var URL = classNode.Element("網址").Value.Trim(); 
-                    var Email = classNode.Element("E-mail").Value.Trim();
-                    var chineseaddress = classNode.Element("營業地址").Value.Trim();
-                    var englishaddress = classNode.Element("英文地址").Value.Trim();
+                    var date = houseNode.Element("登記證核准日期").Value.Trim();
+                    var number = houseNode.Element("編號").Value.Trim();
+                    var chinesename = houseNode.Element("中文名稱").Value.Trim();
+                    var englishename = houseNode.Element("英文名稱").Value.Trim();
+                    var phonenumber = houseNode.Element("電話").Value.Trim();
+                    var fax = houseNode.Element("傳真").Value.Trim();
+                    var URL = houseNode.Element("網址").Value.Trim(); 
+                    var Email = houseNode.Element("E-mail").Value.Trim();
+                    var chineseaddress = houseNode.Element("營業地址").Value.Trim();
+                    var englishaddress = houseNode.Element("英文地址").Value.Trim();
+                   /* house classData = new house();
+                    classData.date = "登記證核准日期";*/
 
                 });
 
