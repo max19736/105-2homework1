@@ -22,8 +22,8 @@ namespace Repository
             var command = new System.Data.SqlClient.SqlCommand("", connection);
             command.CommandText = string.Format(@"
 INSERT        INTO    Station(ID, LocationAddress, ObservatoryName, LocationByTWD67, CreateTime)
-VALUES          ('{0}','{1}','{2}','{3}','{4}')
-", station.ID, station.LocationAddress, station.ObservatoryName, station.LocationByTWD67, station.CreateTime.ToString("yyyy/MM/dd"));
+VALUES          (N'{0}',N'{1}',N'{2}',N'{3}',N'{4}')
+", station.date, station.number, station.chinesename, station.englishename, station.phonenumber,station.fax,station.URL,station.Email,station.chineseaddress,station.englishaddress);
 
             command.ExecuteNonQuery();
 
