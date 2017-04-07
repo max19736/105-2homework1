@@ -8,7 +8,7 @@ namespace Repository
 {
     public class manufacturer
     {
-        private const string _connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\User\Documents\Visual Studio 2015\Projects\homework1\ConsoleApplication1\ConsoleApplication1\資料庫\manufacturer.mdf;Integrated Security=True";
+        private const string _connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\User\Documents\Visual Studio 2015\Projects\homework1\ConsoleApplication1\ConsoleApplication1\資料庫\manufacturers.mdf;Integrated Security=True";
 
 
         public void Createmanufacturer(Models.manufacturer manufacturer)
@@ -20,12 +20,12 @@ namespace Repository
 
             var command = new System.Data.SqlClient.SqlCommand("", connection);
             command.CommandText = string.Format(@"
-INSERT        INTO    manufacturer(code,name,address,orcode,orname,oraddress,contactpeople,contactemail,phone,rule,startdate,enddate,visa)
-VALUES          ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}')
+INSERT        INTO    manufacturers(code,name,address,orcode,orname,oraddress,contactpeople,contactemail,phone,[rule],startdate,enddate,visa,remarks)
+VALUES          ('{0}',N'{1}',N'{2}','{3}',N'{4}',N'{5}',N'{6}',N'{7}','{8}',N'{9}','{10}','{11}',N'{12}',N'{13}')
 ", manufacturer.code,manufacturer.name,manufacturer.address,manufacturer.orcode,manufacturer.orname,manufacturer.oraddress,manufacturer.contactpeople,manufacturer.contactemail,manufacturer.phone,manufacturer.rule,manufacturer.startdate,manufacturer.enddate,manufacturer.visa,manufacturer.remarks);
 
 
- //           command.ExecuteNonQuery();
+            command.ExecuteNonQuery();
 
 
             connection.Close();

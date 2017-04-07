@@ -84,12 +84,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="資料庫\manufacturer.mdf">
+    <Content Include="資料庫\manufacturers.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="資料庫\manufacturer_log.ldf">
+    <Content Include="資料庫\manufacturers_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>manufacturer.mdf</DependentUpon>
+      <DependentUpon>manufacturers.mdf</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup />

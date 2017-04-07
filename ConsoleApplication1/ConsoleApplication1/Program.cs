@@ -89,6 +89,7 @@ namespace ConsoleApplication1
 
             Repository.manufacturer db = new Repository.manufacturer();
 
+
             Console.WriteLine(string.Format("新增{0}筆優良廠商的資料開始", manufacturers.Count));
             manufacturers.ForEach(x =>
             {
