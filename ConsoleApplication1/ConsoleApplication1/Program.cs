@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,42 +12,93 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            var classes = Findhouse ();
+            var manufacturers = Findmanufacturers ();
+            
+            Showmanufacturer(manufacturers);
+
+            Console.WriteLine("按下任一鍵進行新增資料庫");
+            Console.ReadKey();
+           Insertmanufacturer(manufacturers);
         }
 
-        public static List<house> Findhouse()
+        public static List<manufacturer> Findmanufacturers()
         {
-            List<house> house = new List<house>();
-            XNamespace gml = @"http://data.gov.tw/node/42171";
+            List<manufacturer> manufacturers = new List<manufacturer>();
+            var xml = XElement.Load(@"D:\queryEMFile.xml");
+            var manufacturersNode = xml.Descendants("優良廠商").ToList();
 
-            var xml = XElement.Load(@"http://opendataap2.e-land.gov.tw/resource/files/2016-12-21/b7e51d49764d324866a9941023648336.xml");
-
-            var housesNode = xml.Descendants("row_item").ToList();
-
-            for(var i=0;i< housesNode.Count(); i++)
+            for (var i = 0; i < manufacturersNode.Count; i++)
             {
-                var houseNode = housesNode[i];
+                var manufacturerall = manufacturersNode[i];
             }
-            housesNode
-                .Where(x => !x.IsEmpty).ToList()
-                .ForEach(houseNode =>
-                {
-                    var date = houseNode.Element("登記證核准日期").Value.Trim();
-                    var number = houseNode.Element("編號").Value.Trim();
-                    var chinesename = houseNode.Element("中文名稱").Value.Trim();
-                    var englishename = houseNode.Element("英文名稱").Value.Trim();
-                    var phonenumber = houseNode.Element("電話").Value.Trim();
-                    var fax = houseNode.Element("傳真").Value.Trim();
-                    var URL = houseNode.Element("網址").Value.Trim(); 
-                    var Email = houseNode.Element("E-mail").Value.Trim();
-                    var chineseaddress = houseNode.Element("營業地址").Value.Trim();
-                    var englishaddress = houseNode.Element("英文地址").Value.Trim();
-                   /* house classData = new house();
-                    classData.date = "登記證核准日期";*/
+            manufacturersNode.Where(x => !x.IsEmpty).ToList().ForEach(manufacturerall =>
+                    {
+                        var code = manufacturerall.Element("廠商代碼").Value.Trim();
+                        var name = manufacturerall.Element("廠商名稱").Value.Trim();
+                        var address = manufacturerall.Element("廠商地址").Value.Trim();
+                        var orcode = manufacturerall.Element("刊登機關代碼").Value.Trim();
+                        var orname = manufacturerall.Element("刊登機關名稱").Value.Trim();
+                        var oraddress = manufacturerall.Element("機關地址").Value.Trim();
+                        var contactpeople = manufacturerall.Element("聯絡人").Value.Trim();
+                        var contactemail = manufacturerall.Element("聯絡人電子郵件信箱").Value.Trim();
+                        var phone = manufacturerall.Element("聯絡電話").Value.Trim();
+                        var rule = manufacturerall.Element("評優良廠商依據之規定").Value.Trim();
+                        var startdate = manufacturerall.Element("獎勵起始日期").Value.Trim();
+                        var enddate = manufacturerall.Element("獎勵終止日期").Value.Trim();
+                        var visa = manufacturerall.Element("通知工程會文號").Value.Trim();
+                        var manufacturremarks = xml.Descendants("備註").ToList();
+                        var remarks = manufacturerall.Element("備註").Value.Trim();
 
-                });
+                        manufacturer manufacturerData = new manufacturer();
+                        manufacturerData.code = code;
+                        manufacturerData.name = name;
+                        manufacturerData.address = address;
+                        manufacturerData.orcode = orcode;
+                        manufacturerData.orname = orname;
+                        manufacturerData.oraddress = oraddress;
+                        manufacturerData.contactpeople = contactpeople;
+                        manufacturerData.contactemail = contactemail;
+                        manufacturerData.phone = phone;
+                        manufacturerData.rule = rule;
+                        manufacturerData.startdate = startdate;
+                        manufacturerData.enddate = enddate;
+                        manufacturerData.visa = visa;
+                        manufacturerData.remarks = remarks;
+                        manufacturers.Add(manufacturerData);
+                    });
 
-            return classes;
+            return manufacturers;
+        }
+        public static void Showmanufacturer(List<manufacturer> manufacturers)
+        {
+
+            Console.WriteLine(string.Format("共收到{0}筆監測站的資料", manufacturers.Count));
+            manufacturers.ForEach(x =>
+            {
+                Console.WriteLine(string.Format("廠商代碼：{0}\n廠商名稱:{1}\n廠商地址：{2}\n刊登機關代碼：{3}\n刊登機關名稱：{4}\n機關地址：{5}\n聯絡人：{6}\n聯絡人電子郵件信箱：{7}\n聯絡電話：{8}\n評優良廠商依據之規定：{9}\n獎勵起始日期：{10}\n獎勵終止日期：{11}\n通知工程會文號：{12}\n備註：{13}\n", x.code, x.name,x.address,x.orcode,x.orname,x.oraddress,x.contactpeople,x.contactemail,x.phone,x.rule,x.startdate,x.enddate,x.visa,x.remarks));
+
+
+            });
+
+
+        }
+
+
+        public static void Insertmanufacturer(List<manufacturer> manufacturers)
+        {
+
+            Repository.manufacturer db = new Repository.manufacturer();
+
+            Console.WriteLine(string.Format("新增{0}筆優良廠商的資料開始", manufacturers.Count));
+            manufacturers.ForEach(x =>
+            {
+
+                db.Createmanufacturer(x);
+
+
+            });
+            Console.WriteLine(string.Format("新增優良廠商的資料結束"));
+            Console.ReadKey();
+        }
         }
     }
-}
